@@ -1,0 +1,32 @@
+.navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 4px 8px, rgba(2, 155, 232, 0.267) 0px 0px 0px;
+    /* padding: 1%; */
+    padding-left: 5%;
+}
+.navbar h1{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    /* margin-right: 5%; */
+    width:50%;
+    margin-left: 25%;
+}
+.homeT{
+    margin-left: 5%;
+    font-weight: bold;
+    margin-top: 2%;
+    cursor: pointer;
+}
+.buttonNav{
+    margin-top: 1%;
+    font-weight: 400;
+    color: white;
+    /* padding-top: 5px; */
+}

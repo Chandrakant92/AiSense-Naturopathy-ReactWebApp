@@ -1,0 +1,91 @@
+.about{
+    font-family: Arial, Helvetica, sans-serif;
+    justify-content: center;
+    display: block;
+    margin-top: 22%;
+}
+.aboutMain {
+   margin-left: 15%;
+   margin-right: 15%;
+}
+
+.swiperConatiner{
+    display: flex;
+    margin: 2%;
+    cursor: pointer;
+}
+.arrowSy{
+   color: #1993b5;
+   font-size: 30px;
+}
+.swiperBtn{
+    width: auto;
+  text-align: center;
+  border-radius: 0.25rem;
+  padding: 0.25rem;
+  cursor: pointer;
+}
+.swiperBtn:hover{
+    background-color: #1993b5;
+    color: #fff;
+    
+}
+.BTN{
+    font-weight: 500;
+    font-size: medium;
+    font-weight: bold;
+    cursor: pointer;
+}
+.BTN:hover{
+    color: white;
+}
+.sliderP{
+    margin-left: 10%;
+}
+.sliderCnt{
+    flex-direction: row;
+    display: flex;
+    justify-content: space-between;
+}
+.imageSl{
+    width: 40%;
+    height: 40%;
+}
+.sliderImage{
+    height: 400px;
+    animation: flip 1s forwards;
+  perspective: 1000px;
+}
+
+@keyframes flip {
+    0% {
+      transform: perspective(1000px) scaleX(-1);
+    }
+    
+    100% {
+      transform: perspective(1000px) scaleX(1);
+    }
+  }
+
+
+.description{
+    margin-right: 10%;
+    margin-left: 10%;
+    animation: slide-in 1s forwards;
+}
+
+@keyframes slide-in {
+    0% {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+.treatment{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
