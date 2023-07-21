@@ -3,13 +3,17 @@ import './home.css'
 // import { image } from '../assets/image.png'
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
+import { useNavigate } from 'react-router-dom';
+
+
+
 function Appointment() {
 
     const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [Messege, setMessege] = useState('');
-
+  const navigate = useNavigate();
 
 
   const HandleAppointment = (event) => {
@@ -46,7 +50,9 @@ function Appointment() {
           setMessege('');
           setPhone('');
           console.log('data added to firestore')
-          alert('Your appointment has book successfully..')
+          alert('Your appointment has book successfully..');
+        //   history.push('/slot', { name, email, phone, Messege });
+        navigate('/slot',   { state: { name, email, phone, Messege }} )
       }).catch((error) => {
 
           console.log('firestore error ', error)
@@ -80,7 +86,7 @@ function Appointment() {
 
   return (
     <>
-    <form onSubmit={HandleAppointment}>
+    <form >
                     <div className="container-form">
 
 
@@ -114,8 +120,8 @@ function Appointment() {
                                     </div>
 
                                     <div className='btn-box'>
-                                        <button type="submit" class="btn">Submit
-                                        <div className="absolute inset-0 h-full w-full scale-0 rounded-2xl transition-all duration-300 group-hover:scale-100 group-hover:bg-white/30"></div>
+                                        <button type="button" onClick={HandleAppointment} class="btn">Submit
+                                        <div className=""></div>
                                         </button>
                                             
                                     </div>

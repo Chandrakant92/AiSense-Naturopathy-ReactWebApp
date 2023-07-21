@@ -10,7 +10,7 @@ function App() {
     <>
       <Routes>
         <Route exact path='/' element={<Navbar />} />
-        <Route exact path='/slot' element={<Navbar />} />
+        <Route exact path='/slot' element={<Timeslot />} />
       </Routes>
     </>
   );
