@@ -13,10 +13,10 @@ function Footer() {
     return (
         <>
             <footer>
-            <marquee style={{  animationDuration: '1s' }}> <p style={{ color: 'black', fontSize: '18px', fontWeight:'bold'}}> <PiWarning />  Please note: Our online naturopathy consultancy services are available for individuals located within the regions where online consultations are permitted.  <PiWarning /></p> </marquee>
-                <div style={{ backgroundColor: '#1993b5', padding: '1%' }}>
+            <marquee className="warning" style={{  animationDuration: '1s' }}> <p > <PiWarning />  Please note: Our online naturopathy consultancy services are available for individuals located within the regions where online consultations are permitted.  <PiWarning /></p> </marquee>
+                <div className='footerConatier' style={{ backgroundColor: '#1993b5', padding: '1%' }}>
                     <h3 style={{ textAlign: 'center', color: 'white' }}>SHEGAON MAHARASHTRA</h3>
-                    <div style={{ display: 'flex', flexDirection: 'row', marginLeft: '2%', color: 'white', justifyContent: 'space-between' }}>
+                    <div className='footerBox' >
                         <div className='footerTag' style={{ marginLeft: '2%', }}>
                             <h3 >AiSense LLP</h3>
                             <li>About</li>
@@ -53,13 +53,13 @@ function Footer() {
                         </div>
                         <div style={{ backgroundColor: '#e9ebf0', borderRadius: '10px', padding: '1%', marginRight: '5%' }}>
                             <div style={{ display: 'flex', flexDirection: 'column' }}>
-                                <h3 style={{ color: '#0ea3cc' }}>Book An Appointment</h3>
+                                <h3 style={{ color: '#0ea3cc' , textAlign:'center'}}>Book An Appointment</h3>
                                 <input className='input' placeholder='Name*' type="text" />
                                 <input className='input' placeholder='Email' type="text" />
                                 <input className='input' placeholder='Contact no.*' type="text" />
                                 <input className='input' placeholder='Message' type="text" />
                                 <div style={{ backgroundColor: '#0ea3cc', margin: '5%', borderRadius: '10px', cursor: 'pointer' }}>
-                                    <p style={{ textAlign: 'center', fontSize: '15px', }}>SUBMIT</p>
+                                    <p className='submitBTN' style={{textAlign:'center'}}>SUBMIT</p>
                                 </div>
                             </div>
                         </div>
@@ -67,8 +67,8 @@ function Footer() {
                     <br />
                     <hr />
                     <div className='copyright'>
-                        <p className='' style={{ color: 'white' }}> © Copyright AiSense LLP. All Rights Reserved</p>
-                        <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', marginRight: '5%' }}>
+                        <p className='' style={{ color: 'white', textAlign:'center' }}> © Copyright AiSense LLP. All Rights Reserved</p>
+                        <div  style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-around', marginRight: '5%' }}>
                             <p style={{ backgroundColor: 'white', padding: '12px', borderRadius: '20px', marginRight: '3%', color: '#1993b5' }}><FaFacebookF /></p>
                             <p style={{ backgroundColor: 'white', padding: '12px', borderRadius: '20px', marginRight: '3%', color: '#1993b5' }}><BsTwitter /></p>
                             <p style={{ backgroundColor: 'white', padding: '12px', borderRadius: '20px', marginRight: '3%', color: '#1993b5', }}><AiFillYoutube /></p>

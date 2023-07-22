@@ -30,3 +30,31 @@
     color: white;
     /* padding-top: 5px; */
 }
+.TopIcon{
+    font-size: xx-large;
+    color: black;
+    position: fixed;
+    top: 90%;
+    right: 1%;
+    z-index: 2;
+    cursor: pointer;
+    padding: 1px;
+    background-color: none;
+    border-radius: 20px;
+    height: 1px;
+}
+
+/* ========================================= */
+@media screen and (max-width: 800px) {
+    .navbar {
+      flex-direction: column;
+    }
+    .header{
+        flex-direction: column;
+        justify-content: center;
+    }
+    .BookNav{
+        margin: 1%;
+    }
+    
+  }

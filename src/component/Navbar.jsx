@@ -7,6 +7,7 @@ import About from './About';
 import Appointment from './Appointment';
 import './navbar.css'
 import { BsArrowUpCircleFill } from 'react-icons/bs';
+import { useNavigate } from 'react-router-dom';
 
 
 function Navbar() {
@@ -14,6 +15,11 @@ function Navbar() {
     const scrollToTop = () => {
         scroll.scrollToTop();
     };
+    const navigate = useNavigate();
+
+    const handleBook=()=>{
+        navigate('/slot')
+    }
 
 
     return (
@@ -61,16 +67,16 @@ function Navbar() {
                         </div>
                         <div className='homeT'>
                             <Link
-                                activeClass="active"
-                                to="appointment"
+                                // activeClass="active"
+                                // to="appointment"
                                 spy={true}
                                 smooth={true}
                                 offset={-10}
                                 duration={500}
                             >
                                 <div className='buttonNav'>
-                                    <div style={{ backgroundColor: '#0ea3cc', margin: '5%', borderRadius: '20px', cursor: 'pointer', width: '200px' }}>
-                                        <p style={{ textAlign: 'center', fontSize: '14px', paddingTop: '10px', paddingBottom: '10px' }}>Book an Appointment</p>
+                                    <div className='BookNav' style={{ backgroundColor: '#0ea3cc', margin: '5%', borderRadius: '20px', cursor: 'pointer', width: '200px' }}>
+                                        <p onClick={handleBook} style={{ textAlign: 'center', fontSize: '14px', paddingTop: '10px', paddingBottom: '10px' }}>Book an Appointment</p>
 
                                     </div>
                                 </div>
@@ -96,7 +102,7 @@ function Navbar() {
                 <Footer />
              </section>
 
-            <button onClick={scrollToTop} ><BsArrowUpCircleFill /></button>
+            <button className='TopIcon' style={{border:'none',}} onClick={scrollToTop} ><BsArrowUpCircleFill /></button>
 
         </>
     )
