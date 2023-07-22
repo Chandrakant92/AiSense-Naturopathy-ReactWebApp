@@ -14,8 +14,7 @@ function Appointment() {
   const navigate = useNavigate();
 
   const HandleAppointment = (event) => {
-    if (name === "" || email === "" || phone === "" || Messege === "") {
-      // alert("Data uploaded successfully")
+   
 
       if (name === '' || email === '' || phone === '' || Messege ==='') {
           // alert("Data uploaded successfully")
@@ -24,11 +23,11 @@ function Appointment() {
           return;
       }
    else if (phone.length !== 10) {
-          alert("Phone number should be 10 digit");
+          alert("Invalid phone number");
           return;
       }
 
-      navigate('/' )}
+      navigate('/slot',   { state: { name, email, phone, Messege }} )
 //       try {
 
 //       // Access the Firebase database reference
