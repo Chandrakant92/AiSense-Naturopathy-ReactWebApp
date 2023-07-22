@@ -23,8 +23,10 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "npm run build && npm run deploy-server",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy-server": "scp -i myAzurePrivateKey -r build/* dhananjay@20.204.181.216:/home/dhananjay/natura/build && ssh -i myAzurePrivateKey dhananjay@20.204.181.216 \"/home/dhananjay/.nvm/versions/node/v18.16.1/bin/pm2 restart 3\""
   },
   "eslintConfig": {
     "extends": [
