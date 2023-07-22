@@ -43,15 +43,19 @@ function Timeslot() {
 
       // Access the Firebase database reference
       const database = firebase.database();
-
+      
+         // Get the current time
+         const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        console.log(currentTime);
       // Save the form data to Firebase
       database.ref('AppointmentData').push({
           name,
           email,
           phone,
           Messege,
-          Date: selectedDate.toISOString(),
+          Date: selectedDate.toISOString().split('T')[0],
           TimeSlot:selectedTimeSlot,
+          CurrentTime: currentTime,
          
 
       }).then(() => {
@@ -93,13 +97,7 @@ function Timeslot() {
 
   return (
     <>
-      {/* <div>
-      <h1> Book your  Appointment.</h1>
-      <p>Name: {name}</p>
-      <p>Email: {email}</p>
-      <p>Phone: {phone}</p>
-      <p>Message: {Messege}</p>
-    </div> */}
+    
       <form >
         <div style={{ alignItems: 'center' }}>
           <div className='slotCnt'>
@@ -136,15 +134,15 @@ function Timeslot() {
                     <FcClock className='timeicon' /> <button type="button" className='timeBTN'   onClick={() => handleTimeSlotClick('09.00 - 10.00 AM')} > <p>09.00 - 10.00 AM</p></button>
                   </div>
                   <div className='timeDiv'>
-                    <FcClock className='timeicon' /> <button type="button" className='timeBTN'  onClick={() => handleTimeSlotClick('09.00 - 10.00 AM')}> <p>12.00 - 01.00 PM </p></button>
+                    <FcClock className='timeicon' /> <button type="button" className='timeBTN'  onClick={() => handleTimeSlotClick('12.00 - 01.00 PM ')}> <p>12.00 - 01.00 PM </p></button>
                   </div>
                 </div>
                 <div>
                   <div className='timeDiv'>
-                    <FcClock className='timeicon' /> <button type="button" className='timeBTN'  onClick={() => handleTimeSlotClick('09.00 - 10.00 AM')}> <p>10.00 - 11.00 AM</p></button>
+                    <FcClock className='timeicon' /> <button type="button" className='timeBTN'  onClick={() => handleTimeSlotClick('10.00 - 11.00 AM')}> <p>10.00 - 11.00 AM</p></button>
                   </div>
                   <div className='timeDiv'>
-                    <FcClock className='timeicon' /> <button type="button" className='timeBTN'  onClick={() => handleTimeSlotClick('09.00 - 10.00 AM')}> <p>01.00 - 02.00 PM</p></button>
+                    <FcClock className='timeicon' /> <button type="button" className='timeBTN'  onClick={() => handleTimeSlotClick('01.00 - 02.00 PM')}> <p>01.00 - 02.00 PM</p></button>
                   </div>
                 </div>
               </div>
