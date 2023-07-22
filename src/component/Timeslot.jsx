@@ -101,7 +101,7 @@ function Timeslot() {
       <form >
         <div style={{ alignItems: 'center' }}>
           <div className='slotCnt'>
-            <p className='text-book'> Book your  Appointment.</p>
+            <p className='BookHead'> Book your  Appointment.</p>
             <div className='slotInp'>
               <div>
                 <input className='inputS' type="text" defaultValue={name} placeholder="Name"   />
@@ -114,7 +114,8 @@ function Timeslot() {
             </div>
             <hr />
             <div className='time-slot'>
-              <p>Select Your Time Slot</p>
+                 <p style={{textAlign:'center'}}>Select Your Time Slot</p>
+              <div className='DatePick'>
               <div style={{ display: 'flex', flexDirection: 'row' }}>
                 < IoMdCalendar className='caleicon' />
                 <DatePicker className='calender'
@@ -127,6 +128,7 @@ function Timeslot() {
                   scrollableYearDropdown // Enable scrolling in the year dropdown     
                 
                 />
+              </div>
               </div>
               <div className='timeSlot'>
                 <div>

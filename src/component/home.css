@@ -116,7 +116,7 @@
 }
 
 .inputA:focus {
-    border: #5a67d8 solid 2px;
+    border: #1993b5 solid 2px;
     /* You can adjust the color code as needed */
 
     outline: none;
@@ -158,3 +158,34 @@
 .btn:hover {
     opacity: 0.6;
 }
+
+/* ========================================= */
+@media screen and (max-width: 800px) {
+    .main {
+      flex-direction: column-reverse;
+    }
+    .homeImage{
+        width: 99%;
+    }
+    .headinName h2{
+        font-size: smaller;
+    }
+    .headinName p{
+        font-size: smaller;
+        width: 100%;
+    }
+    .heading{
+        width: 80%;
+    }
+    .form-inside{
+        margin-top: -25rem;
+        margin-left: 4%;
+        margin-right: 4%;
+    }
+    .container{
+        padding-bottom: 30%;
+    }
+    .form-text{
+        font-size: small;
+    }
+  }

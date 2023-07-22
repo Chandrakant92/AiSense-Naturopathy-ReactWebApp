@@ -73,6 +73,9 @@
     margin-left: 10%;
     animation: slide-in 1s forwards;
 }
+.buttonNav{
+  font-size: 18px;
+}
 
 @keyframes slide-in {
     0% {
@@ -88,4 +91,52 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+}
+
+/* ================================================== */
+@media screen and (max-width: 800px) {
+  .about {
+    margin-top: 80%;
+  }
+  .aboutMain h2{
+      font-size: small;
+  }
+  .aboutMain p{
+    font-size: small;
+    line-height: 0px;
+}
+.aboutMain{
+  margin-left: 5%;
+  margin-right: 5%;
+}
+.imageSl{
+ margin-left: 5%;
+}
+  .sliderCnt{
+     flex-direction: column;
+     
+  }
+  .BTN{
+    font-size: small;
+  }
+  .sliderImage{
+    height: 300px;
+  }
+  .description h3{
+    font-size: small;
+    margin-top: 8%;
+  }
+  .description{
+    margin-right: 7%;
+    margin-left: 0%;
+  }
+  .description p{
+    font-size: small;
+  }
+  .treatment{
+    font-size: small;
+  }
+  .buttonNav p{
+    font-size: small;
+  }
 }

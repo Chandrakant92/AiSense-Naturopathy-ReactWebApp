@@ -3,6 +3,7 @@ import './about.css'
 import { useRef, useState } from "react";
 import Api from "./DiseaseApi";
 import SliderPage from './SliderPage';
+import { useNavigate } from 'react-router-dom';
 
 // import ArrowForwardIcon from "@mui/icons-material/ArrowForwardIos";
 // import ArrowBackIcon from "@mui/icons-material/ArrowBackIos";
@@ -55,9 +56,16 @@ function About() {
 
     const { isLast, isFirst } = slideBegOrNot;
 
+    const navigate = useNavigate();
+
+    const handleBook=()=>{
+        navigate('/slot')
+    }
+
     return (
         <>
             <div className='about'>
+                
 
                 <div className='aboutMain'>
                     <h2 style={{ textAlign: 'center' }}>What is Naturopathy?</h2>
@@ -68,7 +76,7 @@ function About() {
                         support the body's natural healing processes.</p>
                 </div>
 
-                {/* =============================================================================================== */}
+                {/*  ================================================================================================ */}
                 <div className='swiperConatiner'>
                     <div className=''>
                         <BsArrowLeftCircleFill
@@ -165,7 +173,7 @@ function About() {
                                     </div>
                                     <div className='buttonNav'>
                                         <div style={{ backgroundColor: '#0ea3cc', margin: '5%', borderRadius: '20px', cursor: 'pointer', width: '200px' }}>
-                                            <p style={{ textAlign: 'center', fontSize: '15px', paddingTop: '10px', paddingBottom: '10px' }}>Book an Appointment</p>
+                                            <p onClick={handleBook} style={{ textAlign: 'center',  paddingTop: '10px', paddingBottom: '10px' }}>Book an Appointment</p>
 
                                         </div>
                                     </div>

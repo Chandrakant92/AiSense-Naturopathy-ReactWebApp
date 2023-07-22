@@ -14,7 +14,17 @@
     font-weight: bold;
     font-size: 1.875rem;
    
-   
+}
+.BookHead{
+    text-align: center;
+    font-weight: 600;
+    font-size: 17px;
+    margin-bottom: 6%;
+    color: #117d9b;
+}
+.DatePick{
+    margin-left: 25%;
+    margin-bottom: 10%;
 }
 .time-slot{
     display: inline;
@@ -98,7 +108,11 @@
     cursor: pointer;
     /* width: 115px; */
 }
-
+.timeBTN:focus{
+    background-color: white;
+    color: #1993b5;
+    border: #1993b5 solid 1px;
+}
 .btn-box {
     display: flex;
     justify-content: center;

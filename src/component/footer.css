@@ -42,4 +42,40 @@ border: #0ea3cc solid;
     display: flex;
     justify-content: space-between;
 }
+.footerBox{
+    display: flex;
+    flex-direction: row;
+    margin-left: 2%;
+    color: white;
+    justify-content: space-between;
+}
+.warning{
+    font-size: larger;
+    font-weight: bold;
+}
 
+/* ================================================== */
+@media screen and (max-width: 800px) {
+    .footerBox {
+      flex-direction: column;
+    }
+    .input{
+        outline: none;
+        padding: 2%;
+        margin-top: 3%;
+        margin-bottom: 2%;
+        line-height: 20px;
+        width: 80%;
+        margin-left: 7%;
+    }
+    .submitBTN{
+        font-size: 10px;
+    }
+    .copyright{
+        margin-left: 1%;
+        flex-direction: column-reverse;
+    }
+    .warning p{
+        font-size: small;
+    }
+  }

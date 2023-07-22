@@ -15,3 +15,10 @@ code {
 /* @tailwind base;
 @tailwind components;
 @tailwind utilities; */
+
+
+/* @media screen and (max-width: 800px) {
+  .left, .main, .right {
+    width: 100%; 
+  }
+} */
