@@ -7,6 +7,19 @@
     padding: 2%;
     margin-top: 5%;
 }
+.text-book{
+    display: flex;
+    justify-content: center;
+    color: #1993b5;
+    font-weight: bold;
+    font-size: 1.875rem;
+   
+   
+}
+.time-slot{
+    display: inline;
+   align-items: center;
+}
 .inputS{
     /* border-width: 1px;
     border-style:  solid; */

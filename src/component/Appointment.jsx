@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import './home.css'
-// import { image } from '../assets/image.png'
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 import { useNavigate } from 'react-router-dom';
@@ -28,61 +27,63 @@ function Appointment() {
           alert("Phone number should be 10 digit");
           return;
       }
-      try {
 
-      // Access the Firebase database reference
-      event.preventDefault();
+      navigate('/slot',   { state: { name, email, phone, Messege }} )
+//       try {
 
-      // Access the Firebase database reference
-      const database = firebase.database();
+//       // Access the Firebase database reference
+//       event.preventDefault();
 
-      // Save the form data to Firebase
-      database.ref('Appointment Data').push({
-          name,
-          email,
-          phone,
-          Messege
+//       // Access the Firebase database reference
+//       const database = firebase.database();
 
-      }).then(() => {
-           // Clear the form fields
-          setName('');
-          setEmail('');
-          setMessege('');
-          setPhone('');
-          console.log('data added to firestore')
-          alert('Your appointment has book successfully..');
-        //   history.push('/slot', { name, email, phone, Messege });
-        navigate('/slot',   { state: { name, email, phone, Messege }} )
-      }).catch((error) => {
+//       // Save the form data to Firebase
+//       database.ref('Appointment Data').push({
+//           name,
+//           email,
+//           phone,
+//           Messege
 
-          console.log('firestore error ', error)
-          alert('sorry try again ..')
-      }
+//       }).then(() => {
+//            // Clear the form fields
+//           setName('');
+//           setEmail('');
+//           setMessege('');
+//           setPhone('');
+//           console.log('data added to firestore')
+//           alert('Your appointment has book successfully..');
+//         //   history.push('/slot', { name, email, phone, Messege });
+//         navigate('/slot',   { state: { name, email, phone, Messege }} )
+//       }).catch((error) => {
 
-      )
-  }
-  catch (error) {
+//           console.log('firestore error ', error)
+//           alert('sorry try again ..')
+//       }
+
+//       )
+//   }
+//   catch (error) {
       
-      console.log('system error ', error.message)
-  }
+//       console.log('system error ', error.message)
+//   }
   
   }
 
-  useEffect(() => {
-      // Initialize Firebase app
-      firebase.initializeApp({
-          // Your Firebase config object
-          apiKey: "AIzaSyD0COqyjZAKhqSTUYEjBXGFqFkpYXcSLbM",
-          authDomain: "aisensehospital.firebaseapp.com",
-          databaseURL: "https://aisensehospital-default-rtdb.asia-southeast1.firebasedatabase.app",
-          projectId: "aisensehospital",
-          storageBucket: "aisensehospital.appspot.com",
-          messagingSenderId: "930945176581",
-          appId: "1:930945176581:web:f285076c70e28282b8b86c",
-          measurementId: "G-97VPV39KGC"
+//   useEffect(() => {
+//       // Initialize Firebase app
+//       firebase.initializeApp({
+//           // Your Firebase config object
+//           apiKey: "AIzaSyD0COqyjZAKhqSTUYEjBXGFqFkpYXcSLbM",
+//           authDomain: "aisensehospital.firebaseapp.com",
+//           databaseURL: "https://aisensehospital-default-rtdb.asia-southeast1.firebasedatabase.app",
+//           projectId: "aisensehospital",
+//           storageBucket: "aisensehospital.appspot.com",
+//           messagingSenderId: "930945176581",
+//           appId: "1:930945176581:web:f285076c70e28282b8b86c",
+//           measurementId: "G-97VPV39KGC"
 
-      });
-  }, []);
+//       });
+//   }, []);
 
   return (
     <>
