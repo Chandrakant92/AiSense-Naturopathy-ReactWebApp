@@ -72,10 +72,10 @@
 .sideDrawer{
     position: absolute;
     background-color: white;
-    height: 50%;
+    /* height: 50%; */
     /* padding-right: 10%; */
     right: 0%;
-    width: 50%;
+    width: 100%;
 }
 .bookSM{
     background-color: #1993b5;
@@ -83,6 +83,7 @@
     border-radius: 20px;
     margin-left: 10%;
     margin-right: 10%;
+    width: 40%;
 }
 .smBTN{
     padding-top: 7px;

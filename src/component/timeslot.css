@@ -139,3 +139,19 @@
     color: white;
     border: white solid 1px;
 }
+
+@media screen and (max-width: 800px) {
+    .slotCnt{
+        margin-left: 0%;
+    width: auto;
+    margin: 5%;
+    margin-top: 10%;
+    }
+    .DatePick{
+        margin-left: 15%;
+    }
+    .timeBTN{
+        font-size: small;
+    }
+    
+  }

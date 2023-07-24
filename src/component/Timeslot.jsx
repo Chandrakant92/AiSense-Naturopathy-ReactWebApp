@@ -1,4 +1,4 @@
-import React, { useState , useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import './timeslot.css'
@@ -15,82 +15,122 @@ function Timeslot() {
 
   const navigate = useNavigate();
   const location = useLocation();
- 
-  const { name = '', email = '', phone = '', Messege = '' } = location.state || {};
-    const [selectedDate, setSelectedDate] = useState(null);
-    const [selectedTimeSlot, setSelectedTimeSlot] = useState('');
 
-    const handleTimeSlotClick = (timeSlot) => {
-      setSelectedTimeSlot(timeSlot);
-    };
-   
+  const { name = '', email = '', phone = '', Messege = '' } = location.state || {};
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState('');
+
+
+
 
   const handleDateChange = (date) => {
-        setSelectedDate(date);
+    setSelectedDate(date);
   };
 
   const HandleAppointment = (event) => {
-    console.log(name,email, phone, Messege, selectedDate );
+    console.log(name, email, phone, Messege, selectedDate);
     if (!name || !email || !phone || !Messege || !selectedDate) {
       alert("Please fill in all the required fields.");
       return; // Prevent form submission
     }
-    console.log(name,email, phone, Messege, selectedDate);
+    console.log(name, email, phone, Messege, selectedDate);
     try {
 
       // Access the Firebase database reference
-       event.preventDefault();
+      event.preventDefault();
 
       // Access the Firebase database reference
       const database = firebase.database();
 
       // Save the form data to Firebase
       database.ref('AppointmentData').push({
-          name,
-          email,
-          phone,
-          Messege,
-          Date: selectedDate.toISOString(),
-          TimeSlot:selectedTimeSlot,
-         
+        name,
+        email,
+        phone,
+        Messege,
+        Date: selectedDate.toISOString(),
+        TimeSlot: selectedTimeSlot,
+
 
       }).then(() => {
-           // Clear the form fields
-          console.log('data added to firestore')
-          alert('Your appointment has book successfully..');
+        // Clear the form fields
+        console.log('data added to firestore')
+        alert('Your appointment has book successfully..');
+        navigate('/')
         //   history.push('/slot', { name, email, phone, Messege });
-       
+
       }).catch((error) => {
 
-          console.log('firestore error ', error)
-          alert('sorry try again ..')
+        console.log('firestore error ', error)
+        alert('sorry try again ..')
       }
 
       )
-  }
-  catch (error) {
-      
+    }
+    catch (error) {
+
       console.log('system error ', error.message)
-  }
+    }
   }
   useEffect(() => {
     // Initialize Firebase app
     firebase.initializeApp({
-        // Your Firebase config object
-        apiKey: "AIzaSyD0COqyjZAKhqSTUYEjBXGFqFkpYXcSLbM",
-        authDomain: "aisensehospital.firebaseapp.com",
-        databaseURL: "https://aisensehospital-default-rtdb.asia-southeast1.firebasedatabase.app",
-        projectId: "aisensehospital",
-        storageBucket: "aisensehospital.appspot.com",
-        messagingSenderId: "930945176581",
-        appId: "1:930945176581:web:f285076c70e28282b8b86c",
-        measurementId: "G-97VPV39KGC"
+      // Your Firebase config object
+      apiKey: "AIzaSyD0COqyjZAKhqSTUYEjBXGFqFkpYXcSLbM",
+      authDomain: "aisensehospital.firebaseapp.com",
+      databaseURL: "https://aisensehospital-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "aisensehospital",
+      storageBucket: "aisensehospital.appspot.com",
+      messagingSenderId: "930945176581",
+      appId: "1:930945176581:web:f285076c70e28282b8b86c",
+      measurementId: "G-97VPV39KGC"
 
     });
-}, []);
+  }, []);
 
 
+  // ========================================================Handle Time Slot Availability===================================================================
 
+  const [Data, setData] = useState([]);
+
+  // useEffect(() => {
+  //   // Fetch data from Firebase
+
+  // }, []);
+
+  const handleTimeSlotClick = (timeSlot) => {
+    setSelectedTimeSlot(timeSlot);
+
+
+    console.log("Button clicked..!!");
+    // ========================================
+    const databaseRef = firebase.database().ref('/AppointmentData'); // Assuming your data is stored under '/data' node in Firebase
+    databaseRef.on('value', (snapshot) => {
+      const fetchedData = snapshot.val();
+      if (fetchedData) {
+        // Convert the fetched data object into an array
+        const dataArray = Object.keys(fetchedData).map((key) => ({
+          id: key,
+          ...fetchedData[key],
+        }));
+        setData(dataArray);
+        const idsArray = Data.map(item => item.CurrentTime);
+        // setDataArray(idsArray);
+
+        // Logging the ids in the console
+        idsArray.forEach(id => {
+          console.log('ID:', id);
+        });
+      }
+    });
+    console.log(Data);
+
+
+  };
+// =============================================================
+const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  
   return (
     <>
       {/* <div>
@@ -106,47 +146,48 @@ function Timeslot() {
             <p className='BookHead'> Book your  Appointment.</p>
             <div className='slotInp'>
               <div>
-                <input className='inputS' type="text" defaultValue={name} placeholder="Name"   />
-                <input className='inputS' type="text" defaultValue={email} placeholder="Email"    />
+                <input className='inputS' type="text" defaultValue={name} placeholder="Name" />
+                <input className='inputS' type="text" defaultValue={email} placeholder="Email" />
               </div>
               <div>
-                <input className='inputS' type="text" defaultValue={phone} placeholder="Phone"  />
-                <input className='inputS' type="text" defaultValue={Messege} placeholder="Message"  />
+                <input className='inputS' type="text" defaultValue={phone} placeholder="Phone" />
+                <input className='inputS' type="text" defaultValue={Messege} placeholder="Message" />
               </div>
             </div>
             <hr />
             <div className='time-slot'>
-                 <p style={{textAlign:'center'}}>Select Your Time Slot</p>
+              <p style={{ textAlign: 'center' }}>Select Your Time Slot</p>
               <div className='DatePick'>
-              <div style={{ display: 'flex', flexDirection: 'row' }}>
-                < IoMdCalendar className='caleicon' />
-                <DatePicker className='calender'
-                  selected={selectedDate}
-                  onChange={handleDateChange}
-                  dateFormat="EEEE, dd/MM/yyyy" // Customize the date format
-                  placeholderText="Select a date" // Placeholder text when no date is selected
-                  isClearable // Allow clearing the selected date
-                  // showYearDropdown // Show a dropdown to select the year
-                  scrollableYearDropdown // Enable scrolling in the year dropdown     
-                
-                />
-              </div>
+                <div style={{ display: 'flex', flexDirection: 'row' }}>
+                  < IoMdCalendar className='caleicon' />
+                  <DatePicker className='calender'
+                    selected={selectedDate}
+                    onChange={handleDateChange}
+                    dateFormat="EEEE, dd/MM/yyyy" // Customize the date format
+                    placeholderText="Select a date" // Placeholder text when no date is selected
+                    isClearable // Allow clearing the selected date
+                    minDate={today} 
+                    // showYearDropdown // Show a dropdown to select the year
+                    scrollableYearDropdown // Enable scrolling in the year dropdown     
+
+                  />
+                </div>
               </div>
               <div className='timeSlot'>
                 <div>
                   <div className='timeDiv'>
-                    <FcClock className='timeicon' /> <button type="button" className='timeBTN'   onClick={() => handleTimeSlotClick('09.00 - 10.00 AM')} > <p>09.00 - 10.00 AM</p></button>
+                    <FcClock className='timeicon' /> <button type="button" className='timeBTN' onClick={() => handleTimeSlotClick('09.00 - 10.00 AM')} > <p>09.00 - 10.00 AM</p></button>
                   </div>
                   <div className='timeDiv'>
-                    <FcClock className='timeicon' /> <button type="button" className='timeBTN'  onClick={() => handleTimeSlotClick('09.00 - 10.00 AM')}> <p>12.00 - 01.00 PM </p></button>
+                    <FcClock className='timeicon' /> <button type="button" className='timeBTN' onClick={() => handleTimeSlotClick('09.00 - 10.00 AM')}> <p>12.00 - 01.00 PM </p></button>
                   </div>
                 </div>
                 <div>
                   <div className='timeDiv'>
-                    <FcClock className='timeicon' /> <button type="button" className='timeBTN'  onClick={() => handleTimeSlotClick('09.00 - 10.00 AM')}> <p>10.00 - 11.00 AM</p></button>
+                    <FcClock className='timeicon' /> <button type="button" className='timeBTN' onClick={() => handleTimeSlotClick('09.00 - 10.00 AM')}> <p>10.00 - 11.00 AM</p></button>
                   </div>
                   <div className='timeDiv'>
-                    <FcClock className='timeicon' /> <button type="button" className='timeBTN'  onClick={() => handleTimeSlotClick('09.00 - 10.00 AM')}> <p>01.00 - 02.00 PM</p></button>
+                    <FcClock className='timeicon' /> <button type="button" className='timeBTN' onClick={() => handleTimeSlotClick('09.00 - 10.00 AM')}> <p>01.00 - 02.00 PM</p></button>
                   </div>
                 </div>
               </div>
@@ -154,14 +195,16 @@ function Timeslot() {
 
             <div className='btn-box'>
               <button type="button" className="btn"
-              onClick={HandleAppointment}
+                onClick={HandleAppointment}
               >Confirm Appointment
                 <div className=""></div>
               </button>
 
             </div>
+            <br />
           </div>
         </div>
+       
       </form>
     </>
   )
