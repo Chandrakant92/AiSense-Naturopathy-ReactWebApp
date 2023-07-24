@@ -24,6 +24,13 @@
     margin-top: 2%;
     cursor: pointer;
 }
+.homeTsm{
+    font-weight: bold;
+    margin-top: 2%;
+    cursor: pointer;
+    text-align: left;
+    margin-left: 15%;
+}
 .buttonNav{
     margin-top: 1%;
     font-weight: 400;
@@ -43,15 +50,54 @@
     border-radius: 20px;
     height: 1px;
 }
+.menuBTN{
+    background-color: white;
+    border-color: #1993b5;
+    border: none;
+    border-radius: 3px;
+    color: #1993b5;
+    font-size: large;
+    padding-top: 2%;
+}
+.headerSM{
+    margin-top: 4%;
+    font-size: small;
+    display: none;
 
+}
+.menuIcon{
+    padding-top: 4px;
+    font-size: xx-large;
+}
+.sideDrawer{
+    position: absolute;
+    background-color: white;
+    height: 50%;
+    /* padding-right: 10%; */
+    right: 0%;
+    width: 50%;
+}
+.bookSM{
+    background-color: #1993b5;
+    margin: 5%;
+    border-radius: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+.smBTN{
+    padding-top: 7px;
+    padding-bottom: 7px;
+    text-align: center;
+    color: white;
+    font-size: small;
+}
 /* ========================================= */
 @media screen and (max-width: 800px) {
-    .navbar {
-      flex-direction: column;
+    .headerSM{
+        display: block;
     }
     .header{
-        flex-direction: column;
-        justify-content: center;
+        display: none;
     }
     .BookNav{
         margin: 1%;
