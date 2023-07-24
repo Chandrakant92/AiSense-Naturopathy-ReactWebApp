@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState,  } from 'react'
 import './home.css'
-import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 import { useNavigate } from 'react-router-dom';
+// import firebase from 'firebase/compat/app';
 
 
 
@@ -14,21 +14,21 @@ function Appointment() {
   const navigate = useNavigate();
 
   const HandleAppointment = (event) => {
-   
 
-      if (name === '' || email === '' || phone === '' || Messege ==='') {
-          // alert("Data uploaded successfully")
-         
-          alert('All fields are required');
-          return;
-      }
-   else if (phone.length !== 10) {
-          alert("Invalid phone number");
-          return;
-      }
 
-      navigate('/slot',   { state: { name, email, phone, Messege }} )
+    if (name === '' || email === '' || phone === '' || Messege === '') {
+      // alert("Data uploaded successfully")
 
+      alert('All fields are required');
+      return;
+    }
+    else if (phone.length !== 10) {
+      alert("Invalid phone number");
+      return;
+    }
+
+    navigate('/slot', { state: { name, email, phone, Messege } })
+  }
   return (
     <>
       <form>

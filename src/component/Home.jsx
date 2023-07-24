@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import './home.css'
-import { image } from '../assets/image.png'
-import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
+// import { image } from '../assets/image.png'
+// import firebase from 'firebase/compat/app';
 
 
 
 function Home() {
-  
+
 
 
   return (
@@ -32,7 +32,7 @@ function Home() {
             <img className='homeImage' src={require('../assets/image.png')} alt=".." />
           </div>
         </div>
-        
+
 
       </div>
     </>

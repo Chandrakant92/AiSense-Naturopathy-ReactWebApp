@@ -19,12 +19,12 @@ import { BsArrowLeftCircleFill } from "react-icons/bs";
 
 function About() {
 
-    const [slideBegOrNot, handleSlideByState] = useState({
-        isFirst: true,
-        isLast: false,
-    });
+    // const [slideBegOrNot, handleSlideByState] = useState({
+    //     isFirst: true,
+    //     isLast: false,
+    // });
 
-    const [id, setId] = useState('');
+   
     const [course, setCourse] = useState('');
 
 
@@ -32,7 +32,7 @@ function About() {
         console.log("name:-  ", name);
         const course = Api.find((course) => course.name === (name));
         console.log(course);
-        setId(name)
+       
         setCourse(course)
 
     }
@@ -48,24 +48,24 @@ function About() {
     };
 
     const onSlideChange = (swiper) => {
-        handleSlideByState({
-            isFirst: swiper.isBeginning,
-            isLast: swiper.isEnd,
-        });
+        // handleSlideByState({
+        //     isFirst: swiper.isBeginning,
+        //     isLast: swiper.isEnd,
+        // });
     };
 
-    const { isLast, isFirst } = slideBegOrNot;
+    // const { isLast, isFirst } = slideBegOrNot;
 
     const navigate = useNavigate();
 
-    const handleBook=()=>{
+    const handleBook = () => {
         navigate('/slot')
     }
 
     return (
         <>
             <div className='about'>
-                
+
 
                 <div className='aboutMain'>
                     <h2 style={{ textAlign: 'center' }}>What is Naturopathy?</h2>
@@ -173,7 +173,7 @@ function About() {
                                     </div>
                                     <div className='buttonNav'>
                                         <div style={{ backgroundColor: '#0ea3cc', margin: '5%', borderRadius: '20px', cursor: 'pointer', width: '200px' }}>
-                                            <p onClick={handleBook} style={{ textAlign: 'center',  paddingTop: '10px', paddingBottom: '10px' }}>Book an Appointment</p>
+                                            <p onClick={handleBook} style={{ textAlign: 'center', paddingTop: '10px', paddingBottom: '10px' }}>Book an Appointment</p>
 
                                         </div>
                                     </div>

@@ -127,10 +127,10 @@ function Timeslot() {
 
 
   };
-// =============================================================
-const today = new Date();
+  // =============================================================
+  const today = new Date();
   today.setHours(0, 0, 0, 0);
-  
+
   return (
     <>
       {/* <div>
@@ -166,7 +166,7 @@ const today = new Date();
                     dateFormat="EEEE, dd/MM/yyyy" // Customize the date format
                     placeholderText="Select a date" // Placeholder text when no date is selected
                     isClearable // Allow clearing the selected date
-                    minDate={today} 
+                    minDate={today}
                     // showYearDropdown // Show a dropdown to select the year
                     scrollableYearDropdown // Enable scrolling in the year dropdown     
 
@@ -204,7 +204,7 @@ const today = new Date();
             <br />
           </div>
         </div>
-       
+
       </form>
     </>
   )

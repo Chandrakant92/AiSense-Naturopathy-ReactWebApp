@@ -1,7 +1,7 @@
-.input{
+.input {
     /* border: rgb(37, 29, 29) 1px; */
     border: none;
-    border-radius:5px;
+    border-radius: 5px;
     background-color: white;
     outline: none;
     padding: 2%;
@@ -9,47 +9,54 @@
     margin-bottom: 2%;
     line-height: 25px;
 }
-.input:focus{
-border: #0ea3cc solid;
+
+.input:focus {
+    border: #0ea3cc solid;
 }
 
-.footerTag{
+.footerTag {
     text-decoration: none;
     list-style: none;
     margin: 2%;
 }
 
-.footerTag h3{
-   margin-left: 3%;
+.footerTag h3 {
+    margin-left: 3%;
     font-size: 16px;
     font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
 }
-.footerTag li{
+
+.footerTag li {
     margin-top: 2%;
     cursor: pointer;
 
 }
-.footerTag li:hover{
+
+.footerTag li:hover {
     color: black;
 }
-.location{
+
+.location {
     font-size: 15px;
     line-height: 2px;
 }
-.copyright{
+
+.copyright {
     flex-direction: row;
     display: flex;
     justify-content: space-between;
 }
-.footerBox{
+
+.footerBox {
     display: flex;
     flex-direction: row;
     margin-left: 2%;
     color: white;
     justify-content: space-between;
 }
-.warning{
+
+.warning {
     font-size: larger;
     font-weight: bold;
 }
@@ -57,9 +64,10 @@ border: #0ea3cc solid;
 /* ================================================== */
 @media screen and (max-width: 800px) {
     .footerBox {
-      flex-direction: column;
+        flex-direction: column;
     }
-    .input{
+
+    .input {
         outline: none;
         padding: 2%;
         margin-top: 3%;
@@ -68,14 +76,17 @@ border: #0ea3cc solid;
         width: 80%;
         margin-left: 7%;
     }
-    .submitBTN{
+
+    .submitBTN {
         font-size: 10px;
     }
-    .copyright{
+
+    .copyright {
         margin-left: 1%;
         flex-direction: column-reverse;
     }
-    .warning p{
+
+    .warning p {
         font-size: small;
     }
-  }
+}
