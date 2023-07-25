@@ -7,27 +7,27 @@ import { useNavigate } from 'react-router-dom';
 
 
 function Appointment() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
-  const [Messege, setMessege] = useState("");
+  const [name, setName] = useState("name");
+  const [email, setEmail] = useState("Email");
+  const [phone, setPhone] = useState("Phone");
+  const [messege, setMessege] = useState("Messege");
   const navigate = useNavigate();
 
   const HandleAppointment = (event) => {
    
 
-      if (name === '' || email === '' || phone === '' || Messege ==='') {
-          // alert("Data uploaded successfully")
+  //     if (name === '' || email === '' || phone === '' || Messege ==='') {
+  //         // alert("Data uploaded successfully")
          
-          alert('All fields are required');
-          return;
-      }
-   else if (phone.length !== 10) {
-          alert("Invalid phone number");
-          return;
-      }
+  //         alert('All fields are required');
+  //         return;
+  //     }
+  //  else if (phone.length !== 10) {
+  //         alert("Invalid phone number");
+  //         return;
+  //     }
 
-      navigate('/slot',   { state: { name, email, phone, Messege }} )
+      navigate('/slot',   { state: { name, email, phone, messege }} )
 //       try {
 
 //       // Access the Firebase database reference
@@ -121,7 +121,7 @@ function Appointment() {
                   <input
                     type="text"
                     placeholder="Messege"
-                    value={Messege}
+                    value={messege}
                     onChange={(event) => setMessege(event.target.value)}
                     className="inputA"
                   />
