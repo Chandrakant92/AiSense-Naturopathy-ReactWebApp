@@ -34,7 +34,7 @@ const Api = [
     info: `Our commitment to your health extends beyond the consultation. We offer ongoing support to help you stay on track with your wellness journey. Our consultants will be available for follow-up consultations, answer your queries, and provide guidance and motivation as you progress towards your health goals.
     `,
   },
-  
+
 ];
 
 export default Api;

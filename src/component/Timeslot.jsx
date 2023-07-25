@@ -29,9 +29,9 @@ function Timeslot() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTimeSlot, setSelectedTimeSlot] = useState('');
 
-  const handleTimeSlotClick = (timeSlot) => {
-    setSelectedTimeSlot(timeSlot);
-  };
+  // const handleTimeSlotClick = (timeSlot) => {
+  //   setSelectedTimeSlot(timeSlot);
+  // };
 
 
   const handleDateChange = (date) => {
@@ -98,8 +98,9 @@ function Timeslot() {
         // Clear the form fields
         console.log('data added to firestore')
         alert('Your appointment has book successfully..');
+        navigate('/')
         //   history.push('/slot', { name, email, phone, Messege });
-        // navigate('/')
+
       }).catch((error) => {
 
         console.log('firestore error ', error)
@@ -131,6 +132,47 @@ function Timeslot() {
   }, []);
 
 
+  // ========================================================Handle Time Slot Availability===================================================================
+
+  const [Data, setData] = useState([]);
+
+  // useEffect(() => {
+  //   // Fetch data from Firebase
+
+  // }, []);
+
+  const handleTimeSlotClick = (timeSlot) => {
+    setSelectedTimeSlot(timeSlot);
+
+
+    console.log("Button clicked..!!");
+    // ========================================
+    const databaseRef = firebase.database().ref('/AppointmentData'); // Assuming your data is stored under '/data' node in Firebase
+    databaseRef.on('value', (snapshot) => {
+      const fetchedData = snapshot.val();
+      if (fetchedData) {
+        // Convert the fetched data object into an array
+        const dataArray = Object.keys(fetchedData).map((key) => ({
+          id: key,
+          ...fetchedData[key],
+        }));
+        setData(dataArray);
+        const idsArray = Data.map(item => item.CurrentTime);
+        // setDataArray(idsArray);
+
+        // Logging the ids in the console
+        idsArray.forEach(id => {
+          console.log('ID:', id);
+        });
+      }
+    });
+    console.log(Data);
+
+
+  };
+  // =============================================================
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
 
   return (
     <>
@@ -174,6 +216,7 @@ function Timeslot() {
                     dateFormat="EEEE, dd/MM/yyyy" // Customize the date format
                     placeholderText="Select a date" // Placeholder text when no date is selected
                     isClearable // Allow clearing the selected date
+                    minDate={today}
                     // showYearDropdown // Show a dropdown to select the year
                     scrollableYearDropdown // Enable scrolling in the year dropdown     
 
@@ -186,15 +229,15 @@ function Timeslot() {
                     <FcClock className='timeicon' /> <button type="button" className='timeBTN' onClick={() => handleTimeSlotClick('09.00 - 10.00 AM')} > <p>09.00 - 10.00 AM</p></button>
                   </div>
                   <div className='timeDiv'>
-                    <FcClock className='timeicon' /> <button type="button" className='timeBTN' onClick={() => handleTimeSlotClick('12.00 - 01.00 PM ')}> <p>12.00 - 01.00 PM </p></button>
+                    <FcClock className='timeicon' /> <button type="button" className='timeBTN' onClick={() => handleTimeSlotClick('09.00 - 10.00 AM')}> <p>12.00 - 01.00 PM </p></button>
                   </div>
                 </div>
                 <div>
                   <div className='timeDiv'>
-                    <FcClock className='timeicon' /> <button type="button" className='timeBTN' onClick={() => handleTimeSlotClick('10.00 - 11.00 AM')}> <p>10.00 - 11.00 AM</p></button>
+                    <FcClock className='timeicon' /> <button type="button" className='timeBTN' onClick={() => handleTimeSlotClick('09.00 - 10.00 AM')}> <p>10.00 - 11.00 AM</p></button>
                   </div>
                   <div className='timeDiv'>
-                    <FcClock className='timeicon' /> <button type="button" className='timeBTN' onClick={() => handleTimeSlotClick('01.00 - 02.00 PM')}> <p>01.00 - 02.00 PM</p></button>
+                    <FcClock className='timeicon' /> <button type="button" className='timeBTN' onClick={() => handleTimeSlotClick('09.00 - 10.00 AM')}> <p>01.00 - 02.00 PM</p></button>
                   </div>
                 </div>
               </div>
@@ -208,8 +251,10 @@ function Timeslot() {
               </button>
 
             </div>
+            <br />
           </div>
         </div>
+
       </form>
     </>
   )

@@ -1,96 +1,109 @@
-.about{
-    font-family: Arial, Helvetica, sans-serif;
-    justify-content: center;
-    display: block;
-    margin-top: 22%;
-}
-.aboutMain {
-   margin-left: 15%;
-   margin-right: 15%;
+.about {
+  font-family: Arial, Helvetica, sans-serif;
+  justify-content: center;
+  display: block;
+  margin-top: 22%;
 }
 
-.swiperConatiner{
-    display: flex;
-    margin: 2%;
-    cursor: pointer;
+.aboutMain {
+  margin-left: 15%;
+  margin-right: 15%;
 }
-.arrowSy{
-   color: #1993b5;
-   font-size: 30px;
+
+.swiperConatiner {
+  display: flex;
+  margin: 2%;
+  cursor: pointer;
 }
-.swiperBtn{
-    width: auto;
+
+.arrowSy {
+  color: #1993b5;
+  font-size: 30px;
+}
+
+.swiperBtn {
+  width: auto;
   text-align: center;
   border-radius: 0.25rem;
   padding: 0.25rem;
   cursor: pointer;
 }
-.swiperBtn:hover{
-    background-color: #1993b5;
-    color: #fff;
-    
+
+.swiperBtn:hover {
+  background-color: #1993b5;
+  color: #fff;
+
 }
-.BTN{
-    font-weight: 500;
-    font-size: medium;
-    font-weight: bold;
-    cursor: pointer;
+
+.BTN {
+  font-weight: 500;
+  font-size: medium;
+  font-weight: bold;
+  cursor: pointer;
 }
-.BTN:hover{
-    color: white;
+
+.BTN:hover {
+  color: white;
 }
-.sliderP{
-    margin-left: 10%;
+
+.sliderP {
+  margin-left: 10%;
 }
-.sliderCnt{
-    flex-direction: row;
-    display: flex;
-    justify-content: space-between;
+
+.sliderCnt {
+  flex-direction: row;
+  display: flex;
+  justify-content: space-between;
 }
-.imageSl{
-    width: 40%;
-    height: 40%;
+
+.imageSl {
+  width: 40%;
+  height: 40%;
 }
-.sliderImage{
-    height: 400px;
-    animation: flip 1s forwards;
+
+.sliderImage {
+  height: 400px;
+  animation: flip 1s forwards;
   perspective: 1000px;
 }
 
 @keyframes flip {
-    0% {
-      transform: perspective(1000px) scaleX(-1);
-    }
-    
-    100% {
-      transform: perspective(1000px) scaleX(1);
-    }
+  0% {
+    transform: perspective(1000px) scaleX(-1);
   }
 
-
-.description{
-    margin-right: 10%;
-    margin-left: 10%;
-    animation: slide-in 1s forwards;
+  100% {
+    transform: perspective(1000px) scaleX(1);
+  }
 }
-.buttonNav{
+
+
+.description {
+  margin-right: 10%;
+  margin-left: 10%;
+  animation: slide-in 1s forwards;
+}
+
+.buttonNav {
   font-size: 18px;
 }
 
 @keyframes slide-in {
-    0% {
-      transform: translateY(100%);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
   }
-.treatment{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.treatment {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 /* ================================================== */
@@ -98,45 +111,57 @@
   .about {
     margin-top: 80%;
   }
-  .aboutMain h2{
-      font-size: small;
+
+  .aboutMain h2 {
+    font-size: small;
   }
-  .aboutMain p{
+
+  .aboutMain p {
     font-size: small;
     line-height: 0px;
-}
-.aboutMain{
-  margin-left: 5%;
-  margin-right: 5%;
-}
-.imageSl{
- margin-left: 5%;
-}
-  .sliderCnt{
-     flex-direction: column;
-     
   }
-  .BTN{
+
+  .aboutMain {
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+
+  .imageSl {
+    margin-left: 5%;
+  }
+
+  .sliderCnt {
+    flex-direction: column;
+
+  }
+
+  .BTN {
     font-size: small;
   }
-  .sliderImage{
+
+  .sliderImage {
     height: 300px;
   }
-  .description h3{
+
+  .description h3 {
     font-size: small;
     margin-top: 8%;
   }
-  .description{
+
+  .description {
     margin-right: 7%;
     margin-left: 0%;
   }
-  .description p{
+
+  .description p {
     font-size: small;
   }
-  .treatment{
+
+  .treatment {
     font-size: small;
   }
-  .buttonNav p{
+
+  .buttonNav p {
     font-size: small;
   }
 }

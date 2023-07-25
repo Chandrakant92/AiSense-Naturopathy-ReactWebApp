@@ -1,4 +1,4 @@
-.slotCnt{
+.slotCnt {
     /* margin-right: 15%; */
     margin-left: 25%;
     width: 40%;
@@ -7,30 +7,35 @@
     padding: 2%;
     margin-top: 5%;
 }
-.text-book{
+
+.text-book {
     display: flex;
     justify-content: center;
     color: #1993b5;
     font-weight: bold;
     font-size: 1.875rem;
-   
+
 }
-.BookHead{
+
+.BookHead {
     text-align: center;
     font-weight: 600;
     font-size: 17px;
     margin-bottom: 6%;
     color: #117d9b;
 }
-.DatePick{
+
+.DatePick {
     margin-left: 25%;
     margin-bottom: 10%;
 }
-.time-slot{
+
+.time-slot {
     display: inline;
-   align-items: center;
+    align-items: center;
 }
-.inputS{
+
+.inputS {
     /* border-width: 1px;
     border-style:  solid; */
     /* border-color: gray; */
@@ -48,16 +53,19 @@
     font-size: 0.875rem;
     margin-bottom: 3%;
 }
-.slotInp{
+
+.slotInp {
     flex-direction: row;
     display: flex;
 }
+
 .inputS:focus {
     border: #5a67d8 solid 2px;
     /* You can adjust the color code as needed */
     outline: none;
 }
-.calender{
+
+.calender {
     border: gray solid 1px;
     border-radius: 0.375rem;
     /* background-color: rgba(3, 20, 53, 0.127); */
@@ -71,36 +79,42 @@
     font-weight: 300;
     font-size: 15px;
 }
-.calender:focus{
+
+.calender:focus {
     border: #5a67d8 solid 2px;
     /* You can adjust the color code as needed */
     outline: none;
 }
-.caleicon{
+
+.caleicon {
     /* margin-top: 1%; */
     font-size: 33px;
     color: #1993b5;
 }
-.timeSlot{
+
+.timeSlot {
     display: flex;
     flex-direction: row;
     margin-left: 4%;
     margin-top: 5%;
     justify-content: space-around;
 }
-.timeDiv{
+
+.timeDiv {
     /* margin-left: 5%; */
     margin-bottom: 20%;
     display: flex;
     flex-direction: row;
 }
-.timeicon{
+
+.timeicon {
     font-size: 25px;
     margin-top: 7%;
     right: 10%;
     position: relative;
 }
-.timeBTN{
+
+.timeBTN {
     border: none;
     border-radius: 5px;
     background-color: #1993b5;
@@ -108,11 +122,13 @@
     cursor: pointer;
     /* width: 115px; */
 }
-.timeBTN:focus{
+
+.timeBTN:focus {
     background-color: white;
     color: #1993b5;
     border: #1993b5 solid 1px;
 }
+
 .btn-box {
     display: flex;
     justify-content: center;
@@ -130,7 +146,7 @@
     font-size: 0.875rem;
     border: #1993b5 solid 1px;
     cursor: pointer;
-    transition:  0.4s ease;
+    transition: 0.4s ease;
 }
 
 .btn:hover {
@@ -138,4 +154,22 @@
     background-color: #1993b5;
     color: white;
     border: white solid 1px;
+}
+
+@media screen and (max-width: 800px) {
+    .slotCnt {
+        margin-left: 0%;
+        width: auto;
+        margin: 5%;
+        margin-top: 10%;
+    }
+
+    .DatePick {
+        margin-left: 15%;
+    }
+
+    .timeBTN {
+        font-size: small;
+    }
+
 }

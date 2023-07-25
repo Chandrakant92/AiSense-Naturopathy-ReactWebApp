@@ -12,11 +12,13 @@ function App() {
       <Routes>
         <Route exact path='/' element={<Navbar />} />
         <Route exact path='/slot' element={<Timeslot />} />
-        <Route exact path='/Appointment' element={<Appointment/>} />
-        <Route exact path='/Home' element={<Home/>} />
+        <Route exact path='/Appointment' element={<Appointment />} />
+        <Route exact path='/Home' element={<Home />} />
       </Routes>
     </>
   );
 }
 
 export default App;
+
+// const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });

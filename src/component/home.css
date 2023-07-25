@@ -162,30 +162,37 @@
 /* ========================================= */
 @media screen and (max-width: 800px) {
     .main {
-      flex-direction: column-reverse;
+        flex-direction: column-reverse;
     }
-    .homeImage{
+
+    .homeImage {
         width: 99%;
     }
-    .headinName h2{
+
+    .headinName h2 {
         font-size: smaller;
     }
-    .headinName p{
+
+    .headinName p {
         font-size: smaller;
         width: 100%;
     }
-    .heading{
+
+    .heading {
         width: 80%;
     }
-    .form-inside{
+
+    .form-inside {
         margin-top: -25rem;
         margin-left: 4%;
         margin-right: 4%;
     }
-    .container{
+
+    .container {
         padding-bottom: 30%;
     }
-    .form-text{
+
+    .form-text {
         font-size: small;
     }
-  }
+}
