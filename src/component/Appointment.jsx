@@ -16,16 +16,16 @@ function Appointment() {
   const HandleAppointment = (event) => {
    
 
-  //     if (name === '' || email === '' || phone === '' || Messege ==='') {
-  //         // alert("Data uploaded successfully")
+      if (name === '' || email === '' || phone === '' || Messege ==='') {
+          // alert("Data uploaded successfully")
          
-  //         alert('All fields are required');
-  //         return;
-  //     }
-  //  else if (phone.length !== 10) {
-  //         alert("Invalid phone number");
-  //         return;
-  //     }
+          alert('All fields are required');
+          return;
+      }
+   else if (phone.length !== 10) {
+          alert("Invalid phone number");
+          return;
+      }
 
       navigate('/slot',   { state: { name, email, phone, messege }} )
 //       try {
