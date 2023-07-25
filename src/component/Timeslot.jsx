@@ -23,24 +23,20 @@ function Timeslot() {
   const [Phone, setPhone] = useState(phone);
   const [Messege, setMessege] = useState(messege);
 
-  console.log('====================================');
-  console.log(Name, name, 'name');
-  console.log('====================================');
-  const [selectedDate, setSelectedDate] = useState(null);
+  // console.log('====================================');
+  // console.log(Name, name, 'name');
+  // console.log('====================================');
+  const [selectedDate, setSelectedDate] = useState('');
   const [selectedTimeSlot, setSelectedTimeSlot] = useState('');
 
-  // const handleTimeSlotClick = (timeSlot) => {
-  //   setSelectedTimeSlot(timeSlot);
-  // };
+
+  
 
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
-
+  
   const HandleAppointment = (event) => {
     console.log(name, email, phone, Messege, selectedDate);
-    if (!Name || !Email || !Phone || !Messege || !selectedDate) {
+    if (!Name || !Email || !Phone || !Messege || !selectedDate || !selectedTimeSlot) {
       alert("Please fill in all the required fields.");
       return; // Prevent form submission
     }
@@ -58,29 +54,10 @@ function Timeslot() {
 
 
        // Get the current date (without the time)
-    const currentDate = new Date().toISOString().split('T')[0];
+    // const currentDate = new Date().toISOString().split('T')[0];
 
     // Check if the selected time slot is available
-    const slotRef = database.ref('AppointmentData')
-      .orderByChild('Date')
-      .equalTo(selectedDate.toISOString());
-
-    slotRef.once('value', (snapshot) => {
-      const appointments = snapshot.val();
-      if (appointments) {
-        const appointmentsOnSelectedDate = Object.values(appointments);
-        const slotsBookedOnSelectedDate = appointmentsOnSelectedDate
-          .filter(appointment => appointment.TimeSlot === selectedTimeSlot);
-
-        if (slotsBookedOnSelectedDate.length >= 10) {
-          // The selected time slot is not available
-          alert('The selected time slot is not available. Please choose another time slot.');
-          
-        }
-        else{
-          alert("time slote is available")
-        }
-      }  
+    
     
   
       // Save the form data to Firebase
@@ -108,7 +85,7 @@ function Timeslot() {
       }
 
       )
-    });
+    ;
     }
     catch (error) {
 
@@ -133,43 +110,56 @@ function Timeslot() {
 
 
   // ========================================================Handle Time Slot Availability===================================================================
-
-  const [Data, setData] = useState([]);
-
-  // useEffect(() => {
-  //   // Fetch data from Firebase
-
-  // }, []);
-
-  const handleTimeSlotClick = (timeSlot) => {
-    setSelectedTimeSlot(timeSlot);
-
-
-    console.log("Button clicked..!!");
-    // ========================================
-    const databaseRef = firebase.database().ref('/AppointmentData'); // Assuming your data is stored under '/data' node in Firebase
-    databaseRef.on('value', (snapshot) => {
-      const fetchedData = snapshot.val();
-      if (fetchedData) {
-        // Convert the fetched data object into an array
-        const dataArray = Object.keys(fetchedData).map((key) => ({
-          id: key,
-          ...fetchedData[key],
-        }));
-        setData(dataArray);
-        const idsArray = Data.map(item => item.CurrentTime);
-        // setDataArray(idsArray);
-
-        // Logging the ids in the console
-        idsArray.forEach(id => {
-          console.log('ID:', id);
-        });
-      }
-    });
-    console.log(Data);
-
-
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
   };
+
+  
+  const handleTimeSlotClick = (timeSlot) => {
+
+    setSelectedTimeSlot(timeSlot);
+    if (selectedDate==='') {
+      alert("Please select the Date first..!")
+     
+      return;
+      
+     }
+    // const currentDate = new Date().toISOString().split('T')[0];
+    const database = firebase.database();
+    const slotRef = database.ref('/AppointmentData')
+    // console.log('====================================');
+    //  console.log(selectedDate.toISOString().split('T')[0]);
+    // console.log('====================================')
+  
+    slotRef.orderByChild('Date')
+    slotRef.equalTo(selectedDate.toISOString().split('T')[0]);
+  slotRef.once('value', (snapshot) => {
+    const appointments = snapshot.val();
+    if (appointments) {
+      const appointmentsOnSelectedDate = Object.values(appointments);
+      const slotsBookedOnSelectedDate = appointmentsOnSelectedDate
+        .filter(appointment => appointment.TimeSlot === selectedTimeSlot);
+
+      if (slotsBookedOnSelectedDate.length >= 10) {
+        // The selected time slot is not available
+        alert('The selected time slot is not available. Please choose another time slot.');
+        console.log('====================================');
+        console.log(selectedTimeSlot);
+        console.log('====================================');
+        setSelectedTimeSlot('');
+        return;
+      }
+      else{
+       
+        alert("time slote is available")
+      }
+    }  
+
+  })
+    
+  };
+
+
   // =============================================================
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -186,21 +176,21 @@ function Timeslot() {
                 <input className='inputS' type="text"
                   value={Name}
                   onChange={(event) => setName(event.target.value)}
-                  placeholder={name} />
+                  placeholder={name===''?'Name*':name} />
                 <input className='inputS' type="text"
                   value={Email}
                   onChange={(event) => setEmail(event.target.value)}
-                  placeholder={email} />
+                  placeholder={email===''?'Email':email} />
               </div>
               <div>
                 <input className='inputS' type="text"
                   value={Phone}
                   onChange={(event) => setPhone(event.target.value)}
-                  placeholder={phone} />
+                  placeholder={phone===''?'Phone*':phone} />
                 <input className='inputS' type="text"
                   value={Messege}
                   onChange={(event) => setMessege(event.target.value)}
-                  placeholder={messege}
+                  placeholder={messege===''?'Messege':messege}
                 />
               </div>
             </div>

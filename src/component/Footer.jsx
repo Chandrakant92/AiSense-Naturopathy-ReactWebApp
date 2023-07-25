@@ -1,15 +1,39 @@
 /* eslint-disable jsx-a11y/no-distracting-elements */
-import React from 'react'
+import React,{useState} from 'react'
 import './footer.css'
 import { FaFacebookF } from 'react-icons/fa';
 import { FaLinkedinIn } from 'react-icons/fa';
 import { AiFillYoutube } from 'react-icons/ai';
 import { BsTwitter } from 'react-icons/bs';
 import { PiWarning } from 'react-icons/pi';
+import { useNavigate } from 'react-router-dom';
 
 
 
 function Footer() {
+    const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [messege, setMessege] = useState("");
+  const navigate = useNavigate();
+
+  const HandleAppointment = (event) => {
+
+
+    if (name === '' || email === '' || phone === '' || messege === '') {
+      // alert("Data uploaded successfully")
+
+      alert('All fields are required');
+      return
+    }
+    else if (phone.length !== 10) {
+      alert("Invalid phone number");
+      return
+    }else{
+      navigate('/slot', { state: { name, email, phone, messege } })
+    }
+
+  }
     return (
         <>
             <footer>
@@ -54,12 +78,20 @@ function Footer() {
                         <div style={{ backgroundColor: '#e9ebf0', borderRadius: '10px', padding: '1%', marginRight: '5%' }}>
                             <div style={{ display: 'flex', flexDirection: 'column' }}>
                                 <h3 style={{ color: '#0ea3cc', textAlign: 'center' }}>Book An Appointment</h3>
-                                <input className='input' placeholder='Name*' type="text" />
-                                <input className='input' placeholder='Email' type="text" />
-                                <input className='input' placeholder='Contact no.*' type="text" />
-                                <input className='input' placeholder='Message' type="text" />
+                                <input className='input' placeholder='Name*' type="text" 
+                                value={name}
+                                onChange={(event) => setName(event.target.value)}/>
+                                <input className='input' placeholder='Email' type="text"
+                                 value={email}
+                                 onChange={(event) => setEmail(event.target.value)}/>
+                                <input className='input' placeholder='Contact no.*' type="text" 
+                                value={phone}
+                                onChange={(event) => setPhone(event.target.value)}/>
+                                <input className='input' placeholder='Message' type="text" 
+                                value={messege}
+                                onChange={(event) => setMessege(event.target.value)}/>
                                 <div style={{ backgroundColor: '#0ea3cc', margin: '5%', borderRadius: '10px', cursor: 'pointer' }}>
-                                    <p className='submitBTN' style={{ textAlign: 'center' }}>SUBMIT</p>
+                                    <p onClick={HandleAppointment} className='submitBTN' style={{ textAlign: 'center' }}>SUBMIT</p>
                                 </div>
                             </div>
                         </div>

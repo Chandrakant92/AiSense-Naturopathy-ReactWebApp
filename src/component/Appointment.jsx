@@ -7,28 +7,30 @@ import { useNavigate } from 'react-router-dom';
 
 
 function Appointment() {
-  const [name, setName] = useState("name");
-  const [email, setEmail] = useState("Email");
-  const [phone, setPhone] = useState("Phone");
-  const [messege, setMessege] = useState("Messege");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [messege, setMessege] = useState("");
   const navigate = useNavigate();
 
   const HandleAppointment = (event) => {
 
 
-    if (name === '' || email === '' || phone === '' || Messege === '') {
+    if (name === '' || email === '' || phone === '' || messege === '') {
       // alert("Data uploaded successfully")
 
       alert('All fields are required');
-      return;
+      return
     }
     else if (phone.length !== 10) {
       alert("Invalid phone number");
-      return;
+      return
+    }else{
+      navigate('/slot', { state: { name, email, phone, messege } })
     }
 
-    navigate('/slot', { state: { name, email, phone, Messege } })
   }
+  
   return (
     <>
       <form>
