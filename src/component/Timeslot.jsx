@@ -23,9 +23,6 @@ function Timeslot() {
   const [Phone, setPhone] = useState(phone);
   const [Messege, setMessege] = useState(messege);
 
-  // console.log('====================================');
-  // console.log(Name, name, 'name');
-  // console.log('====================================');
   const [selectedDate, setSelectedDate] = useState('');
   const [selectedTimeSlot, setSelectedTimeSlot] = useState('');
 
@@ -35,12 +32,12 @@ function Timeslot() {
 
   
   const HandleAppointment = (event) => {
-    console.log(name, email, phone, Messege, selectedDate);
+   
     if (!Name || !Email || !Phone || !Messege || !selectedDate || !selectedTimeSlot) {
       alert("Please fill in all the required fields.");
       return; // Prevent form submission
     }
-    console.log(name, email, phone, Messege, selectedDate);
+    // console.log(name, email, phone, Messege, selectedDate);
     try {
 
       // Access the Firebase database reference
@@ -73,7 +70,7 @@ function Timeslot() {
 
       }).then(() => {
         // Clear the form fields
-        console.log('data added to firestore')
+       
         alert('Your appointment has book successfully..');
         navigate('/')
         //   history.push('/slot', { name, email, phone, Messege });
@@ -95,16 +92,15 @@ function Timeslot() {
   useEffect(() => {
     // Initialize Firebase app
     firebase.initializeApp({
-      // Your Firebase config object
-      apiKey: "AIzaSyD0COqyjZAKhqSTUYEjBXGFqFkpYXcSLbM",
-      authDomain: "aisensehospital.firebaseapp.com",
-      databaseURL: "https://aisensehospital-default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "aisensehospital",
-      storageBucket: "aisensehospital.appspot.com",
-      messagingSenderId: "930945176581",
-      appId: "1:930945176581:web:f285076c70e28282b8b86c",
-      measurementId: "G-97VPV39KGC"
-
+      
+      apiKey: process.env.REACT_APP_API_KEY,
+      authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+      databaseURL: process.env.REACT_APP_DATABASE_URL,
+      projectId: process.env.REACT_APP_PROJECT_ID,
+      storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+      messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+      appId: process.env.REACT_APP_APP_ID,
+      measurementId: process.env.REACT_APP_MEASUREMENT_ID,
     });
   }, []);
 
@@ -143,14 +139,10 @@ function Timeslot() {
       if (slotsBookedOnSelectedDate.length >= 10) {
         // The selected time slot is not available
         alert('The selected time slot is not available. Please choose another time slot.');
-        console.log('====================================');
-        console.log(selectedTimeSlot);
-        console.log('====================================');
         setSelectedTimeSlot('');
         return;
       }
       else{
-       
         alert("time slote is available")
       }
     }  
