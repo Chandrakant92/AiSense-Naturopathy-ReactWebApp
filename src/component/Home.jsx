@@ -8,8 +8,6 @@ import 'firebase/compat/database';
 
 function Home() {
 
-
-
   return (
     <>
       <div className='container'>
