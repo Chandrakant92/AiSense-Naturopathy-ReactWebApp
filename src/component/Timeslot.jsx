@@ -15,25 +15,29 @@ function Timeslot() {
 
   const navigate = useNavigate();
   const location = useLocation();
+  const { name = '', email = '', phone = '', messege = '' } = location.state || {};
 
-  const { name = '', email = '', phone = '', Messege = '' } = location.state || {};
-  const [selectedDate, setSelectedDate] = useState(null);
+
+  const [Name, setName] = useState(name);
+  const [Email, setEmail] = useState(email);
+  const [Phone, setPhone] = useState(phone);
+  const [Messege, setMessege] = useState(messege);
+
+  const [selectedDate, setSelectedDate] = useState('');
   const [selectedTimeSlot, setSelectedTimeSlot] = useState('');
 
 
+  
 
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
-
+  
   const HandleAppointment = (event) => {
-    console.log(name, email, phone, Messege, selectedDate);
-    if (!name || !email || !phone || !Messege || !selectedDate) {
+   
+    if (!Name || !Email || !Phone || !Messege || !selectedDate || !selectedTimeSlot) {
       alert("Please fill in all the required fields.");
       return; // Prevent form submission
     }
-    console.log(name, email, phone, Messege, selectedDate);
+    // console.log(name, email, phone, Messege, selectedDate);
     try {
 
       // Access the Firebase database reference
@@ -41,20 +45,32 @@ function Timeslot() {
 
       // Access the Firebase database reference
       const database = firebase.database();
+      
+      // Get the current time
+      const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
+
+       // Get the current date (without the time)
+    // const currentDate = new Date().toISOString().split('T')[0];
+
+    // Check if the selected time slot is available
+    
+    
+  
       // Save the form data to Firebase
       database.ref('AppointmentData').push({
-        name,
-        email,
-        phone,
+        Name,
+        Email,
+        Phone,
         Messege,
-        Date: selectedDate.toISOString(),
+        Date: selectedDate.toISOString().split('T')[0],
         TimeSlot: selectedTimeSlot,
+        CurrentTime: currentTime,
 
 
       }).then(() => {
         // Clear the form fields
-        console.log('data added to firestore')
+       
         alert('Your appointment has book successfully..');
         navigate('/')
         //   history.push('/slot', { name, email, phone, Messege });
@@ -66,6 +82,7 @@ function Timeslot() {
       }
 
       )
+    ;
     }
     catch (error) {
 
@@ -75,83 +92,98 @@ function Timeslot() {
   useEffect(() => {
     // Initialize Firebase app
     firebase.initializeApp({
-      // Your Firebase config object
-      apiKey: "AIzaSyD0COqyjZAKhqSTUYEjBXGFqFkpYXcSLbM",
-      authDomain: "aisensehospital.firebaseapp.com",
-      databaseURL: "https://aisensehospital-default-rtdb.asia-southeast1.firebasedatabase.app",
-      projectId: "aisensehospital",
-      storageBucket: "aisensehospital.appspot.com",
-      messagingSenderId: "930945176581",
-      appId: "1:930945176581:web:f285076c70e28282b8b86c",
-      measurementId: "G-97VPV39KGC"
-
+      
+      apiKey: process.env.REACT_APP_API_KEY,
+      authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+      databaseURL: process.env.REACT_APP_DATABASE_URL,
+      projectId: process.env.REACT_APP_PROJECT_ID,
+      storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+      messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+      appId: process.env.REACT_APP_APP_ID,
+      measurementId: process.env.REACT_APP_MEASUREMENT_ID,
     });
   }, []);
 
 
   // ========================================================Handle Time Slot Availability===================================================================
-
-  const [Data, setData] = useState([]);
-
-  // useEffect(() => {
-  //   // Fetch data from Firebase
-
-  // }, []);
-
-  const handleTimeSlotClick = (timeSlot) => {
-    setSelectedTimeSlot(timeSlot);
-
-
-    console.log("Button clicked..!!");
-    // ========================================
-    const databaseRef = firebase.database().ref('/AppointmentData'); // Assuming your data is stored under '/data' node in Firebase
-    databaseRef.on('value', (snapshot) => {
-      const fetchedData = snapshot.val();
-      if (fetchedData) {
-        // Convert the fetched data object into an array
-        const dataArray = Object.keys(fetchedData).map((key) => ({
-          id: key,
-          ...fetchedData[key],
-        }));
-        setData(dataArray);
-        const idsArray = Data.map(item => item.CurrentTime);
-        // setDataArray(idsArray);
-
-        // Logging the ids in the console
-        idsArray.forEach(id => {
-          console.log('ID:', id);
-        });
-      }
-    });
-    console.log(Data);
-
-
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
   };
+
+  
+  const handleTimeSlotClick = (timeSlot) => {
+
+    setSelectedTimeSlot(timeSlot);
+    if (selectedDate==='') {
+      alert("Please select the Date first..!")
+     
+      return;
+      
+     }
+    // const currentDate = new Date().toISOString().split('T')[0];
+    const database = firebase.database();
+    const slotRef = database.ref('/AppointmentData')
+    // console.log('====================================');
+    //  console.log(selectedDate.toISOString().split('T')[0]);
+    // console.log('====================================')
+  
+    slotRef.orderByChild('Date')
+    slotRef.equalTo(selectedDate.toISOString().split('T')[0]);
+  slotRef.once('value', (snapshot) => {
+    const appointments = snapshot.val();
+    if (appointments) {
+      const appointmentsOnSelectedDate = Object.values(appointments);
+      const slotsBookedOnSelectedDate = appointmentsOnSelectedDate
+        .filter(appointment => appointment.TimeSlot === selectedTimeSlot);
+
+      if (slotsBookedOnSelectedDate.length >= 10) {
+        // The selected time slot is not available
+        alert('The selected time slot is not available. Please choose another time slot.');
+        setSelectedTimeSlot('');
+        return;
+      }
+      else{
+        alert("time slote is available")
+      }
+    }  
+
+  })
+    
+  };
+
+
   // =============================================================
   const today = new Date();
   today.setHours(0, 0, 0, 0);
 
   return (
     <>
-      {/* <div>
-      <h1> Book your  Appointment.</h1>
-      <p>Name: {name}</p>
-      <p>Email: {email}</p>
-      <p>Phone: {phone}</p>
-      <p>Message: {Messege}</p>
-    </div> */}
+
       <form >
         <div style={{ alignItems: 'center' }}>
           <div className='slotCnt'>
             <p className='BookHead'> Book your  Appointment.</p>
             <div className='slotInp'>
               <div>
-                <input className='inputS' type="text" defaultValue={name} placeholder="Name" />
-                <input className='inputS' type="text" defaultValue={email} placeholder="Email" />
+                <input className='inputS' type="text"
+                  value={Name}
+                  onChange={(event) => setName(event.target.value)}
+                  placeholder={name===''?'Name*':name} />
+                <input className='inputS' type="text"
+                  value={Email}
+                  onChange={(event) => setEmail(event.target.value)}
+                  placeholder={email===''?'Email':email} />
               </div>
               <div>
-                <input className='inputS' type="text" defaultValue={phone} placeholder="Phone" />
-                <input className='inputS' type="text" defaultValue={Messege} placeholder="Message" />
+                <input className='inputS' type="text"
+                  value={Phone}
+                  onChange={(event) => setPhone(event.target.value)}
+                  placeholder={phone===''?'Phone*':phone} />
+                <input className='inputS' type="text"
+                  value={Messege}
+                  onChange={(event) => setMessege(event.target.value)}
+                  placeholder={messege===''?'Messege':messege}
+                />
               </div>
             </div>
             <hr />
